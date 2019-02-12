@@ -47,7 +47,7 @@ Para destruir la máquina virtual (veremos que ya no aparece en Virtualbox)
 ```
 vagrant destroy
 ```
-#Aprovisionamiento
+# Aprovisionamiento
 ## shell
 To-do
 ## script
