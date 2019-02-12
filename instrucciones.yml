@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Instalar Git
+      apt: name=git state=installed update_cache=true
+    - name: Instalar laas herramientas de la aplicacion web
+      apt: name={{ item }} state= installed
+      with items:
+        - postgresql
+        - php5-fpm
+    - name: Crea un usuario para el código de mi aplciación
+      user: name=aplicacion comment ="Cuenta de la aplicacion"
