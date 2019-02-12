@@ -1,0 +1,2 @@
+# vagrant
+Pruebas con vagrant
