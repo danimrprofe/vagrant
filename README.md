@@ -1,3 +1,14 @@
+# Carpetas
+
+## vagrant-ansible
+La idea es aprovisionar máquinas virtuales a través de un playbook de ansible.
+
+## vagrant-mult
+Automatizar el aprovisionamiento de varias MV en un único Vagrantfile
+
+## vagrant-wordpress
+Automatizar y aprovisionar una MV con wordpress
+
 # vagrant
 
 Pruebas con vagrant. Versión de pruebas: Vagrant 2.2.3
