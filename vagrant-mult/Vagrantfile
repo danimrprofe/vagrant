@@ -1,0 +1,52 @@
+servers=[
+  {
+    :hostname => "web",
+    :ip => "192.168.1.10",
+    :box => "ubuntu/xenial64",
+    :ram => 512,
+    :cpu => 1,
+    :ssh_port =>10022,
+    :script => "sudo apt install apache2 -y"
+  },
+  {
+    :hostname => "proxy",
+    :ip => "192.168.1.11",
+    :box => "ubuntu/xenial64",
+    :ram => 512,
+    :cpu => 1,
+    :ssh_port =>10122,
+    :script => "sudo apt install apache2 -y"
+  },
+  {
+    :hostname => "dns",
+    :ip => "192.168.1.11",
+    :box => "ubuntu/xenial64",
+    :ram => 512,
+    :cpu => 1,
+    :ssh_port =>10222,
+    :script => "sudo apt install apache2 -y"
+  },
+  {
+    :hostname => "ftp",
+    :ip => "192.168.1.11",
+    :box => "ubuntu/xenial64",
+    :ram => 512,
+    :cpu => 1,
+    :ssh_port =>10322,
+    :script => "sudo apt install apache2 -y"
+  }
+]
+
+Vagrant.configure(2) do |config|
+    servers.each do |machine|
+        config.vm.define machine[:hostname] do |node|
+            node.vm.box = machine[:box]
+            node.vm.hostname = machine[:hostname]
+            node.vm.network "public_network", ip: machine[:ip]
+            node.vm.provider "virtualbox" do |vb|
+                vb.customize ["modifyvm", :id, "--memory", machine[:ram]]
+            node.vm.provision "shell", inline: machine[:script]
+            end
+        end
+    end
+end
