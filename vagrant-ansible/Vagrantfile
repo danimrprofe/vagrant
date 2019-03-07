@@ -1,6 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Creamos uena MV con Ubuntu. 
+# En este caso la vamos a aprovisionar utilizando ansible
+# Hemos creado un playbook de ansible que contiene el estado que queremos
+# que tenga la MV
+
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/precise64"
   #config.vm.provision "shell", path:'php.sh'
