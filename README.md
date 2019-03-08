@@ -45,6 +45,16 @@ Las boxes se pueden crear:
 * Utilizando herramientas (packer.io, imagefactory)
 * Manualmente a través del comando vagrant package. 
 
+## Cosas que puedes hacer con Vagrant
+
+Redactando correctamenteun archivo de configuración podemos:
+
+* Arrancar y parar máquinas
+* Customizar las MV con tantos CPU cores, memoria como queramos
+* Conectar por SSH a las diferentes máquinas con vagrant ssh
+* Aprovisionar las máquinas con todo lo que se necesite, utilizando
+Puppet, chef, ansible, shell, etc.
+
 ## Vagrantfiles
 
 La configuración del entorno que queremos implementar se realiza en un archivo
@@ -53,24 +63,17 @@ de texto plano escrito en Ruby llamado Vagrantfile (similar a los Dockerfiles).
 A través de este archivo podemos definir el entorno que queramos, y podemos:
 * Configurar máquinas virtuales
 
-## vagrant-ansible
-La idea es aprovisionar máquinas virtuales a través de un playbook de ansible.
-
-## vagrant-mult
-Automatizar el aprovisionamiento de varias MV en un único Vagrantfile
-
-## vagrant-wordpress
-Automatizar y aprovisionar una MV con wordpress
-
-# vagrant
+## Comandos vagrant
 
 Pruebas con vagrant. Versión de pruebas: Vagrant 2.2.3
+
+### Version utilizada
 
 Para conocer la versión de Vagrant instalada:
 ```
 vagrant version
 ```
-## Descargando boxes
+### Descargando boxes
 
 Podemos consultar las boxes que hay publicadas en: https://app.vagrantup.com/boxes/search
 
@@ -82,7 +85,7 @@ Podemos listar las boxes que tenemos descargadas. Si una box no está descargada
 ```
 vagrant box list
 ```
-## Inicializando configuraciones (Vagrantfile)
+### Inicializando configuraciones (Vagrantfile)
 
 Creamos una carpeta para guardar los archivos de configuración, y una vez dentro inicializamos vagrant en esta carpeta:
 ```
@@ -98,7 +101,7 @@ Podemos ver qué MV tenemos levantadas con:
 ```
 vagrant status
 ```
-## Conectando con las máquinas virtuales
+### Conectando con las máquinas virtuales
 
 Podemos conectar a la máquina con la un comando SSH de vagrant. Otra opción es desocultar la MV (que habrá arrancado en Virtualbox en modo oculto), o bien tirar de putty.
 ```
@@ -112,7 +115,7 @@ Salimos con
 ```
 exit
 ```
-## Parando máquinas
+### Parando máquinas
 
 Para cerrar las máquinas virtuales por las buenas:
 ```
@@ -126,16 +129,27 @@ Para destruir la máquina virtual (veremos que ya no aparece en Virtualbox)
 vagrant destroy
 ```
 
-## Configuraciones de Vagrant
+### Configuraciones de Vagrant
 
 Todas las configuraciones se guardan en una carpeta oculta llamada .vagrant. Estas configuraciones se pueden subir a github y llevar un control de versiones, al ser la configuración guardada en archivos de texto plano.
 
 Las boxes se meten en la carpeta que tengamos definida en Virtualbox para almacenar las MV.
 
-# Aprovisionamiento
-## shell
+### Aprovisionamiento
+#### shell
 To-do
-## script
+#### script
 To-do
-## ansible
+#### ansible
 To-do
+
+## Proyectos en este repositorio
+
+## vagrant-ansible
+La idea es aprovisionar máquinas virtuales a través de un playbook de ansible.
+
+## vagrant-mult
+Automatizar el aprovisionamiento de varias MV en un único Vagrantfile
+
+## vagrant-wordpress
+Automatizar y aprovisionar una MV con wordpress
