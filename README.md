@@ -1,4 +1,57 @@
-# Carpetas
+# Vagrant
+
+## Introducción
+
+Vagrant es una herramienta que permite crear entornos de desarrollo basados en 
+máquinas virtuales. La idea es crear entornos que sean lo más parecido o idénticos
+a los servidores de producción. El objetivo es solucionar el problema de 
+"en mi máquina funciona". Si definimos un entorno determinado, lo podemos ejecutar
+en cualquier lugar, sabiendo que cada vez que implemente en un sitio diferente
+se crearán las mismas mAquinas y funcionarán de la misma forma.
+
+Agrega una capa por encima del software de virtualización (Virtualbox, VMware, etc).
+Está escrito en Ruby y, pese a que inicialmente se construyó para ser utilizado
+con VirtualBox como hipervisor, actualmente soporta muchos más.
+
+Vagrant permite crear entornos de desarrollo:
+* Reproducibles
+* Portables
+* Ligeros
+
+## Cómo instalarlo
+
+Para poner en macha Vagrant necesitaremos, por lo menos:
+
+* Descargar e instalar VirtualBox (si es el hipervisor elegido).
+* Descargar e instalar Vagrant
+* Descargar la box de vagrant que queramos
+
+## Boxes
+
+Una box es un archivo (tareado y gzipeado) parecida a una imagen de máquina 
+virtual, lista para ejecutarse (sin necesidad de instalación). Las podemos:
+
+* Descargar de diferentes proveedores
+* Crear nosotros manualmente
+
+Cada box contiene:
+
+* Un Vagrantfile
+* Una imagen de máquina virtual (vmdk)
+* Un archivo OVF que define el hardware virtual del box
+* Un archivo JSON que define que proveedor trabaja con la caja
+
+Las boxes se pueden crear:
+* Utilizando herramientas (packer.io, imagefactory)
+* Manualmente a través del comando vagrant package. 
+
+## Vagrantfiles
+
+La configuración del entorno que queremos implementar se realiza en un archivo
+de texto plano escrito en Ruby llamado Vagrantfile (similar a los Dockerfiles).
+
+A través de este archivo podemos definir el entorno que queramos, y podemos:
+* Configurar máquinas virtuales
 
 ## vagrant-ansible
 La idea es aprovisionar máquinas virtuales a través de un playbook de ansible.
