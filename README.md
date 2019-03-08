@@ -2,7 +2,7 @@
 
 ## Introducción
 
-Vagrant es una herramienta que permite crear entornos de desarrollo basados en 
+*Vagrant* es una herramienta que permite crear entornos de desarrollo basados en 
 máquinas virtuales. La idea es crear entornos que sean lo más parecido o idénticos
 a los servidores de producción. El objetivo es solucionar el problema de 
 "en mi máquina funciona". Si definimos un entorno determinado, lo podemos ejecutar
