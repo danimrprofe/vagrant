@@ -6,7 +6,7 @@ servers = [
     :name => "k8s-master",
     :type => "master",
     :box => "ubuntu/xenial64",
-    :box_version => "20180831.0.0",
+    #:box_version => "20180831.0.0",
     :eth1 => "192.168.205.10",
     :mem => "2048",
     :cpu => "2",
@@ -17,7 +17,7 @@ servers = [
     :name => "k8s-nodo1",
     :type => "nodo",
     :box => "ubuntu/xenial64",
-    :box_version => "20180831.0.0",
+    #:box_version => "20180831.0.0",
     :eth1 => "192.168.205.11",
     :mem => "2048",
     :cpu => "2",
@@ -28,7 +28,7 @@ servers = [
     :name => "k8s-nodo2",
     :type => "nodo",
     :box => "ubuntu/xenial64",
-    :box_version => "20180831.0.0",
+    #:box_version => "20180831.0.0",
     :eth1 => "192.168.205.12",
     :mem => "2048",
     :cpu => "2",
@@ -57,20 +57,20 @@ Vagrant.configure("2") do |config|
             #config.vm.provision "docker"
 
            
-            config.vm.provision "shell",
-                path: "aprovisionamiento-box.sh",
-                privileged: "true"
-
-                       
-            if opts[:type] == "master"
-                config.vm.provision "shell", 
-                    path: "aprovisionamiento-master.sh",
-                    privileged: "true"
-            else
-                config.vm.provision "shell", 
-                    path: "aprovisionamiento-nodos.sh",
-                    privileged: "true"
-            end
+            #config.vm.provision "shell",
+#                path: "aprovisionamiento-box.sh",
+                #privileged: "true"
+#
+ #                      
+  #          if opts[:type] == "master"
+   #             config.vm.provision "shell", 
+    #                path: "aprovisionamiento-master.sh",
+     #               privileged: "true"
+      #      else
+       ##         config.vm.provision "shell", 
+         #           path: "aprovisionamiento-nodos.sh",
+          #          privileged: "true"
+           # end
 
         end
 
