@@ -1,0 +1,20 @@
+---
+
+- name: Configurar webserver con nginx
+  hosts: localhost
+  become: True
+  tasks:
+    - name: Instalar Nginx
+      apt: name=nginx state=latest update_cache=yes
+    - name: Copiar archivo de configuración de Nginx
+      copy: src=files/nginx.conf dest=/etc/nginx/sites-available/default
+    - name: Habilitar configuración
+      file: >
+        dest=/etc/nginx/sites-enabled/default
+        src=/etc/nginx/sites-available/default
+        state=link
+    - name: Copiar index.html
+      template: src=templates/index.html.j2 dest=/usr/share/nginx/html/index.html 
+        mode=0644
+    - name: Reiniciar Nginx
+  service: name=nginx state=restarted

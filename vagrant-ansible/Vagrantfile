@@ -6,9 +6,16 @@
 # Hemos creado un playbook de ansible que contiene el estado que queremos
 # que tenga la MV
 
-Vagrant.configure("2") do |config|
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/precise64"
+  # Reenvío de puertos
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 443, host: 8443
+  # APROVISIONAMIENTO
   #config.vm.provision "shell", path:'php.sh'
-  config.vm.provision = "ansible", run: "always" do |ansible|
+  config.vm.provision 'common', type: "ansible", run: "always" do |ansible|
     ansible.playbook = "instrucciones.yml"
+  end
 end

@@ -1,0 +1,79 @@
+# Cluster de k8s
+# Levantaremos 3 MV, 1 nodo master y 2 normales
+
+servers = [
+{
+    :name => "k8s-master",
+    :type => "master",
+    :box => "ubuntu/xenial64",
+    :box_version => "20180831.0.0",
+    :eth1 => "192.168.205.10",
+    :mem => "2048",
+    :cpu => "2",
+    :ssh_port =>10122
+},
+
+{
+    :name => "k8s-nodo1",
+    :type => "nodo",
+    :box => "ubuntu/xenial64",
+    :box_version => "20180831.0.0",
+    :eth1 => "192.168.205.11",
+    :mem => "2048",
+    :cpu => "2",
+    :ssh_port =>10222
+},
+
+{
+    :name => "k8s-nodo2",
+    :type => "nodo",
+    :box => "ubuntu/xenial64",
+    :box_version => "20180831.0.0",
+    :eth1 => "192.168.205.12",
+    :mem => "2048",
+    :cpu => "2",
+    :ssh_port =>10322
+}
+
+]
+
+Vagrant.configure("2") do |config|
+    servers.each do |opts|
+        config.vm.define opts[:name] do |config|
+            config.vm.box = opts[:box]
+            config.vm.box_version = opts[:box_version]
+            config.vm.hostname = opts[:name]
+            config.vm.network :private_network, ip: opts[:eth1]
+            config.vm.provider "virtualbox" do |v|
+                v.name = opts[:name]
+            	v.customize ["modifyvm", :id, "--groups", "/Cluster de k8s"]
+                v.customize ["modifyvm", :id, "--memory", opts[:mem]]
+                v.customize ["modifyvm", :id, "--cpus", opts[:cpu]]
+            end
+
+            # Aprovisionamiento de MV
+            
+            # we cannot use this because we can't install the docker version we want - https://github.com/hashicorp/vagrant/issues/4871
+            #config.vm.provision "docker"
+
+           
+            config.vm.provision "shell",
+                path: "aprovisionamiento-box.sh",
+                privileged: "true"
+
+                       
+            if opts[:type] == "master"
+                config.vm.provision "shell", 
+                    path: "aprovisionamiento-master.sh",
+                    privileged: "true"
+            else
+                config.vm.provision "shell", 
+                    path: "aprovisionamiento-nodos.sh",
+                    privileged: "true"
+            end
+
+        end
+
+    end
+
+end
