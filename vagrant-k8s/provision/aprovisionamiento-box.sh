@@ -20,9 +20,6 @@
     # run docker commands as vagrant user (sudo not required)
     usermod -aG docker vagrant
     systemctl enable docker
-
-  
-
     
     # ip of this box
     IP_ADDR=`ifconfig enp0s8 | grep Mask | awk '{print $2}'| cut -f2 -d:`

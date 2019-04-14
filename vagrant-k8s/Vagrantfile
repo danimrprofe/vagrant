@@ -56,21 +56,23 @@ Vagrant.configure("2") do |config|
             # we cannot use this because we can't install the docker version we want - https://github.com/hashicorp/vagrant/issues/4871
             #config.vm.provision "docker"
 
-           
-            #config.vm.provision "shell",
-#                path: "aprovisionamiento-box.sh",
-                #privileged: "true"
-#
- #                      
-  #          if opts[:type] == "master"
-   #             config.vm.provision "shell", 
-    #                path: "aprovisionamiento-master.sh",
-     #               privileged: "true"
-      #      else
-       ##         config.vm.provision "shell", 
-         #           path: "aprovisionamiento-nodos.sh",
-          #          privileged: "true"
-           # end
+        # todos los nodos tendrán un aprovisionamiento común    
+
+        config.vm.provision "shell",
+            path: "aprovisionamiento-box.sh",
+            privileged: "true"
+
+            # el nodo master  y los nodos worker tendrán aprovisionamientos diferenciados
+
+            if opts[:type] == "master"
+                config.vm.provision "shell", 
+                path: "aprovisionamiento-master.sh",
+                privileged: "true"
+            else
+                config.vm.provision "shell", 
+                path: "aprovisionamiento-nodos.sh",
+                privileged: "true"
+            end
 
         end
 
