@@ -37,6 +37,7 @@ servers = [
 
 ]
 
+
 Vagrant.configure("2") do |config|
     servers.each do |opts|
         config.vm.define opts[:name] do |config|
@@ -51,27 +52,23 @@ Vagrant.configure("2") do |config|
                 v.customize ["modifyvm", :id, "--cpus", opts[:cpu]]
             end
 
-            # Aprovisionamiento de MV
-            
-            # we cannot use this because we can't install the docker version we want - https://github.com/hashicorp/vagrant/issues/4871
-            #config.vm.provision "docker"
+        # Aprovisionamiento de MV
+        # Todos los nodos tendrán un aprovisionamiento común    
 
-        # todos los nodos tendrán un aprovisionamiento común    
+        #config.vm.provision "shell",
+        #    path: "provision/aprovisionamiento-box.sh",
+        #    privileged: "true"
 
-        config.vm.provision "shell",
-            path: "aprovisionamiento-box.sh",
-            privileged: "true"
-
-            # el nodo master  y los nodos worker tendrán aprovisionamientos diferenciados
+            # El nodo master  y los nodos worker tendrán aprovisionamientos diferenciados
 
             if opts[:type] == "master"
-                config.vm.provision "shell", 
-                path: "aprovisionamiento-master.sh",
-                privileged: "true"
+                #config.vm.provision "shell", 
+                #path: "provision/aprovisionamiento-master.sh",
+                #privileged: "true"
             else
-                config.vm.provision "shell", 
-                path: "aprovisionamiento-nodos.sh",
-                privileged: "true"
+                #config.vm.provision "shell", 
+                #path: "provision/aprovisionamiento-nodos.sh",
+                #privileged: "true"
             end
 
         end

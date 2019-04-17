@@ -12,7 +12,7 @@
     apt update
 
     # Instalamos los paquetes necesari
-    apt install -y apt-transport-https ca-certificates curl software-properties-common
+    #apt install -y apt-transport-https ca-certificates curl software-properties-common
     apt install -y docker.io
     apt-get install -y kubelet kubeadm kubectl
     
@@ -24,5 +24,5 @@
     # ip of this box
     IP_ADDR=`ifconfig enp0s8 | grep Mask | awk '{print $2}'| cut -f2 -d:`
     # set node-ip
-    sudo sed -i "/^[^#]*KUBELET_EXTRA_ARGS=/c\KUBELET_EXTRA_ARGS=--node-ip=$IP_ADDR" /etc/default/kubelet
-    sudo systemctl restart kubelet
+    #sudo sed -i "/^[^#]*KUBELET_EXTRA_ARGS=/c\KUBELET_EXTRA_ARGS=--node-ip=192.168.205.10" /etc/default/kubelet
+   # sudo systemctl restart kubelet
