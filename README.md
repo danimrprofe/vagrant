@@ -26,6 +26,11 @@ Para poner en macha Vagrant necesitaremos, por lo menos:
 * Descargar e instalar Vagrant
 * Descargar la box de vagrant que queramos
 
+```
+sudo apt install vagrant
+sudo apt install virtualbox
+```
+
 ## Boxes
 
 Una box es un archivo (tareado y gzipeado) parecida a una imagen de máquina 
